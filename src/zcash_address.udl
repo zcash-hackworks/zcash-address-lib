@@ -1,0 +1,28 @@
+namespace zcash_address {
+    [Throws=AddressError]
+    Address parse(string address_text);
+};
+
+enum Kind {
+    "Transparent","Sprout", "Sapling", "Unified"
+};
+
+enum Network {
+    "Test", "Main", "Regtest"
+};
+
+dictionary Address {
+    Kind kind;
+    Network network;
+    string str;
+};
+
+[Error]
+enum AddressError {
+    "InvalidAddress"
+};
+
+interface ZcashAddressHelper {
+    constructor();
+    Address parse(string address_text);
+};
