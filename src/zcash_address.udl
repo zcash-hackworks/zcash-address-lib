@@ -4,7 +4,7 @@ namespace zcash_address {
 };
 
 enum Kind {
-    "Transparent","Sprout", "Sapling", "Unified"
+    "Transparent", "Sapling", "Unified"
 };
 
 enum Network {
@@ -25,4 +25,7 @@ enum AddressError {
 interface ZcashAddressHelper {
     constructor();
     Address parse(string address_text);
+    Address derive_transparent_address(sequence<u8> seed_bytes, i32 account, i32 index);
+    Address derive_sapling_address(sequence<u8> seed_bytes, i32 account, i32 index);
+    Address derive_unified_address(sequence<u8> seed_bytes, i32 account, i32 index);
 };
