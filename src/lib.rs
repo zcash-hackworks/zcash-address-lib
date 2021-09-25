@@ -2,7 +2,7 @@
 // mod zcash_address::{ZcashAddress};
 uniffi_macros::include_scaffolding!("zcash_address");
 
-use zcash_address::{ZcashAddress, ParseError, Network};
+use zcash_address::{ZcashAddress, ParseError};
 
 #[derive(Debug, thiserror::Error)]
 pub enum AddressError {
@@ -14,16 +14,8 @@ pub enum AddressError {
     InvalidUnifiedAddress,
 }
 
-#[derive(Debug, Clone)]
-pub enum NetworkType {
-    Main,
-    Test,
-    Regtest
-}
-
 #[derive(Debug)]
 pub struct Address {
-    network: NetworkType,
     string: String,
 }
 
@@ -66,20 +58,6 @@ trait ToAddressError {
     fn to_address_error(&self) -> AddressError;
 }
 
-trait ToNetworkType {
-    fn to_network_type(&self) -> NetworkType;
-}
-
-impl ToNetworkType for Network {
-    fn to_network_type(&self) -> NetworkType {
-        match self {
-            Network::Main => NetworkType::Main,
-            Network::Test => NetworkType::Test,
-            Network::Regtest => NetworkType::Regtest,
-        }
-    }
-}
-
 impl ToAddressError for ParseError {
     fn to_address_error(&self) -> AddressError {
         match self {
@@ -92,11 +70,8 @@ impl ToAddressError for ParseError {
 impl ToAddress for ZcashAddress {
     fn to_address(&self) -> Address {
         let address = Address {
-            network: self.net.to_network_type(),
             string: self.to_string()
-        }
-
-
+        };
         return address
 
     }
