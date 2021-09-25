@@ -15,7 +15,11 @@ name = "uniffi_zcash_addresses"
 uniffi_macros = "0.13"
 uniffi = {version = "0.13", features=["builtin-bindgen"]}
 thiserror = "1.0"
-zcash_address = "0.0"
+zcash_address = "0.0.0"
 
 [build-dependencies]
 uniffi_build = {version = "0.13", features=["builtin-bindgen"]}
+
+
+[patch.crates-io]
+zcash_address = { git = "https://github.com/zcash/librustzcash.git" , rev = "e13e746e8a4883d6683e24da00580d55f632b115" }
