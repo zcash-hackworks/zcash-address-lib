@@ -1,28 +1,21 @@
-namespace zcash_address {
+namespace zcash_address_util {
     [Throws=AddressError]
     Address parse(string address_text);
-};
-
-enum Kind {
-    "Transparent","Sprout", "Sapling", "Unified"
-};
-
-enum Network {
-    "Test", "Main", "Regtest"
+    [Throws=AddressError]
+    Address derive_transparent_address([ByRef] sequence<u8> seed_bytes, i32 account, i32 index);
+    [Throws=AddressError]
+    Address derive_sapling_address([ByRef] sequence<u8> seed_bytes, i32 account, i32 index);
+    [Throws=AddressError]
+    Address derive_unified_address([ByRef] sequence<u8> seed_bytes, i32 account, i32 index);
 };
 
 dictionary Address {
-    Kind kind;
-    Network network;
-    string str;
+    string string;
 };
 
 [Error]
 enum AddressError {
-    "InvalidAddress"
-};
-
-interface ZcashAddressHelper {
-    constructor();
-    Address parse(string address_text);
+    "InvalidAddress",
+    "NotZcash",
+    "InvalidUnifiedAddress"
 };
