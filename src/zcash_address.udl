@@ -9,8 +9,17 @@ namespace zcash_address_util {
     Address derive_unified_address([ByRef] sequence<u8> seed_bytes, i32 account, i32 index);
 };
 
+
+enum AddressType {
+    "Sprout",
+    "Transparent",
+    "Sapling",
+    "Unified"
+};
+
 dictionary Address {
     string string;
+    AddressType kind;
 };
 
 [Error]

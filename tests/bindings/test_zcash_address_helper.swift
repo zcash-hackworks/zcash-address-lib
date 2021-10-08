@@ -4,9 +4,9 @@
 
 // do {
 //     let testSaplingAddress = "ztestsapling1ysrf4uq52n5hhj0vzxpcfneszlk8flalh3ajdwsyucnpc0fjktp9afzcclnxdrnzfl7w7wyx3kz"
-//     // let parsedAddress  = try zcash_address.parse(testSaplingAddress)
-//     // assert(parsedAddress.network == .test)
-//     assert(true)
+//     let parsedAddress  = try zcash_address.parse(testSaplingAddress)
+//     // assert(parsedAddress.kind == .sapling)
+//     // assert(parsedAddress.string == testSaplingAddress)
 // } catch {
 //     fatalError("Invalid Address when it should have been valid")
 // }
