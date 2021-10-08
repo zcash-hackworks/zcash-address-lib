@@ -1,0 +1,2 @@
+[bindings.swift]
+cdylib_name = "zcash_address_util"
